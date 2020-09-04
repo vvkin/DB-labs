@@ -41,8 +41,8 @@ SELECT "ContactName"
 FROM customers
 WHERE "ContactName" ~* '^[vk]';
 --Using one ~* in average is faster than using ILIKE two times
---Explanation: WHERE "CustomerName" ILIKE 'v%' OR "CustomerName" ILIKE 'k%'
---Query ... WHERE "CustomerName" ILIKE '[vk]%' doesn't work correctly in PostgreSQL
+--Explanation: WHERE "ContactName" ILIKE 'v%' OR "ContactName" ILIKE 'k%'
+--Query ... WHERE "ContactName" ILIKE '[vk]%' doesn't work correctly in PostgreSQL
 --9.Показати усі замовлення, в адресах доставки яких немає крапок.
 SELECT *
 FROM orders
