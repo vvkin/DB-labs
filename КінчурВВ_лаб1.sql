@@ -51,6 +51,5 @@ WHERE "ShipAddress" NOT LIKE '%.%';
 --10.Вивести назви тих продуктів, що починаються на знак % або _, а закінчуються на останню літеру вашого імені. Навіть якщо такі відсутні. 
 SELECT "ProductName" 
 FROM products
-WHERE "ProductName" ~* '^[%_].*m$';
---Here used ~* because the last letter can be both 'M' and 'm'
+WHERE "ProductName" ~ '^[%_].*m$';
 
