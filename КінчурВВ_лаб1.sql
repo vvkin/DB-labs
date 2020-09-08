@@ -40,9 +40,9 @@ LIMIT 3;
 SELECT "ContactName"
 FROM customers
 WHERE "ContactName" ~ '^[vk]';
---Using one ~ in average is faster than using ILIKE two times
---Explanation: WHERE "ContactName" ILIKE 'v%' OR "ContactName" ILIKE 'k%'
---Query ... WHERE "ContactName" ILIKE '[vk]%' doesn't work correctly in PostgreSQL
+--Using one ~ in average is faster than using LIKE two times
+--Explanation: WHERE "ContactName" LIKE 'v%' OR "ContactName" LIKE 'k%'
+--Query ... WHERE "ContactName" LIKE '[vk]%' doesn't work correctly in PostgreSQL
 --9.Показати усі замовлення, в адресах доставки яких немає крапок.
 SELECT *
 FROM orders
