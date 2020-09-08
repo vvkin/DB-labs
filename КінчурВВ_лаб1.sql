@@ -34,22 +34,22 @@ SELECT "CompanyName",
        "Address",
        "Phone"
 FROM suppliers
-WHERE "Country" = 'USA'
+WHERE "Country" = 'USA' --for reliability, can be used lower("Contry") = 'usa'
 LIMIT 3;
 --8.Вивести всі контактні імена клієнтів, що починаються з першої літери вашого прізвища, імені, по-батькові. Врахувати чутливість до регістру. 
 SELECT "ContactName"
 FROM customers
-WHERE "ContactName" ~* '^[vk]';
---Using one ~* in average is faster than using ILIKE two times
+WHERE "ContactName" ~ '^[vk]';
+--Using one ~ in average is faster than using ILIKE two times
 --Explanation: WHERE "ContactName" ILIKE 'v%' OR "ContactName" ILIKE 'k%'
 --Query ... WHERE "ContactName" ILIKE '[vk]%' doesn't work correctly in PostgreSQL
 --9.Показати усі замовлення, в адресах доставки яких немає крапок.
 SELECT *
 FROM orders
 WHERE "ShipAddress" NOT LIKE '%.%';
---Also can be used (~! '\.') and (~ '[^\.]') but solution with NOT LIKE is faster
+--Also can be used (!~ '\.')  but solution with NOT LIKE is faster
 --10.Вивести назви тих продуктів, що починаються на знак % або _, а закінчуються на останню літеру вашого імені. Навіть якщо такі відсутні. 
 SELECT "ProductName" 
 FROM products
-WHERE "ProductName" ~ '^[%_].*m$';
+WHERE "ProductName" ~* '^[%_].*m$'; 
 
