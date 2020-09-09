@@ -39,10 +39,10 @@ LIMIT 3;
 --8.Вивести всі контактні імена клієнтів, що починаються з першої літери вашого прізвища, імені, по-батькові. Врахувати чутливість до регістру. 
 SELECT "ContactName"
 FROM customers
-WHERE "ContactName" ~ '^[vk]';
+WHERE "ContactName" ~ '^[VK]';
 --Using one ~ in average is faster than using LIKE two times
---Explanation: WHERE "ContactName" LIKE 'v%' OR "ContactName" LIKE 'k%'
---Query ... WHERE "ContactName" LIKE '[vk]%' doesn't work correctly in PostgreSQL
+--Explanation: WHERE "ContactName" LIKE 'V%' OR "ContactName" LIKE 'K%'
+--Query ... WHERE "ContactName" LIKE '[VK]%' doesn't work correctly in PostgreSQL
 --9.Показати усі замовлення, в адресах доставки яких немає крапок.
 SELECT *
 FROM orders
