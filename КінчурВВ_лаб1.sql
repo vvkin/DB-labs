@@ -14,35 +14,26 @@ SELECT "CompanyName"
 FROM suppliers
 ORDER BY "CompanyName" DESC;
 --6.Отримати всі деталі замовлень, замінивши назви в назвах стовпчиків ID на Number.
-SELECT "OrderID" AS "OrderNumber",
-       "CustomerID" AS "CustomerNumber",
-       "EmployeeID" AS "EmployeeNumber",
-       "OrderDate",
-       "RequiredDate",
-       "ShippedDate",
-       "ShipVia",
-       "Freight",
-       "ShipName",
-       "ShipAddress",
-       "ShipCity",
-       "ShipRegion",
-       "ShipPostalCode",
-       "ShipCountry"
-FROM orders;
+SELECT "OrderID" AS "OrderNumber", 
+	"ProductID" AS "ProductNumber", 
+	"UnitPrice", 
+	"Quantity", 
+	"Discount" 
+FROM order_details;
 --7.Знайти трьох постачальників з США. Вивести назву, адресу та телефон.
 SELECT "CompanyName",
        "Address",
        "Phone"
 FROM suppliers
-WHERE "Country" = 'USA' --for reliability, can be used lower("Contry") = 'usa'
+WHERE "Country" = 'USA' --for reliability, can be used lower("Country") = 'usa'
 LIMIT 3;
 --8.Вивести всі контактні імена клієнтів, що починаються з першої літери вашого прізвища, імені, по-батькові. Врахувати чутливість до регістру. 
 SELECT "ContactName"
 FROM customers
-WHERE "ContactName" ~ '^[VK]';
---Using one ~ in average is faster than using LIKE two times
---Explanation: WHERE "ContactName" LIKE 'V%' OR "ContactName" LIKE 'K%'
---Query ... WHERE "ContactName" LIKE '[VK]%' doesn't work correctly in PostgreSQL
+WHERE "ContactName" ~* '^[vk]';
+--Using one ~* in average is faster than using ILIKE two times
+--Explanation: WHERE "ContactName" ILIKE 'v%' OR "ContactName" ILIKE 'k%'
+--Query ... WHERE "ContactName" ILIKE '[vk]%' doesn't work correctly in PostgreSQL
 --9.Показати усі замовлення, в адресах доставки яких немає крапок.
 SELECT *
 FROM orders
@@ -51,5 +42,5 @@ WHERE "ShipAddress" NOT LIKE '%.%';
 --10.Вивести назви тих продуктів, що починаються на знак % або _, а закінчуються на останню літеру вашого імені. Навіть якщо такі відсутні. 
 SELECT "ProductName" 
 FROM products
-WHERE "ProductName" ~* '^[%_].*m$'; 
+WHERE "ProductName" ~* '^[%_].*m$';  --OR SIMILAR TO '[%_]%[mM]'
 
